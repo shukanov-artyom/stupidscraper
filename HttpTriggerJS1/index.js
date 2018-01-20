@@ -5,9 +5,13 @@ const { JSDOM } = jsdom;
 module.exports = function (context, req) {
     context.log('Processing URL.');
     if (req.query.url || (req.body && req.body.url)) {
+        var url = req.query.url || req.body.url;
+        download(url).then(data => {
+            var scrapped = scrapHtml(data.toString());
+        });
         context.res = {
             // status: 200, /* Defaults to 200 */
-            body: "Url " + (req.query.url || req.body.url)
+            scrappedData: scrapped 
         };
     }
     else {
