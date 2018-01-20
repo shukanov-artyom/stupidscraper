@@ -57,8 +57,5 @@ function cleanse(textData){
         .replace('    ', ' ')
         .replace('   ', ' ')
         .replace('  ', ' ')
-        .replace('\r\n', ' ')
-        .replace('\n', ' ')
-        .replace('\r', ' ')
-        .replace('\r\n', ' ');
+        .replace(/(\r\n|\n|\r)/gm,"");
 }
