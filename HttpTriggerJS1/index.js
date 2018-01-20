@@ -8,19 +8,20 @@ module.exports = function (context, req) {
         var url = req.query.url || req.body.url;
         download(url).then(data => {
             var scrapped = scrapHtml(data.toString());
+            context.res = {
+                // status: 200, /* Defaults to 200 */
+                scrappedData: scrapped 
+            };
+            context.done();
         });
-        context.res = {
-            // status: 200, /* Defaults to 200 */
-            scrappedData: scrapped 
-        };
     }
     else {
         context.res = {
             status: 400,
             body: "Please pass a name on the query string or in the request body"
         };
+        context.done();
     }
-    context.done();
 };
 
 function fits(text) {
