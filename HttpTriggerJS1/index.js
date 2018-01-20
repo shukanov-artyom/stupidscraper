@@ -3,12 +3,11 @@ const jsdom = require('jsdom');
 const { JSDOM } = jsdom;
 
 module.exports = function (context, req) {
-    context.log('JavaScript HTTP trigger function processed a request.');
-
-    if (req.query.name || (req.body && req.body.name)) {
+    context.log('Processing URL.');
+    if (req.query.url || (req.body && req.body.url)) {
         context.res = {
             // status: 200, /* Defaults to 200 */
-            body: "Hi " + (req.query.name || req.body.name)
+            body: "Url " + (req.query.url || req.body.url)
         };
     }
     else {
