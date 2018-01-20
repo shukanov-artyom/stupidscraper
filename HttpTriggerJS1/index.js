@@ -1,3 +1,7 @@
+const download = require('download');
+const jsdom = require('jsdom');
+const { JSDOM } = jsdom;
+
 module.exports = function (context, req) {
     context.log('JavaScript HTTP trigger function processed a request.');
 
