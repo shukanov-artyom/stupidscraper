@@ -15,3 +15,13 @@ module.exports = function (context, req) {
     }
     context.done();
 };
+
+function fits(text) {
+    var forbiddenWords = [ 'http' ];
+    forbiddenWords.forEach(function(word) {
+            if (text.indexOf(word) !== -1) {
+                return false;
+            }
+        });
+    return true;
+}
