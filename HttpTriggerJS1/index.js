@@ -10,7 +10,7 @@ module.exports = function (context, req) {
             var scrapped = scrapHtml(data.toString());
             context.res = {
                 // status: 200, /* Defaults to 200 */
-                scrappedData: scrapped 
+                scrappedData: cleanse(scrapped) 
             };
             context.done();
         });
@@ -18,7 +18,7 @@ module.exports = function (context, req) {
     else {
         context.res = {
             status: 400,
-            body: "Please pass a name on the query string or in the request body"
+            body: "Please pass a url on the query string or in the request body"
         };
         context.done();
     }
@@ -49,4 +49,9 @@ function scrapHtml(html) {
         }
     });
     return result;
+}
+
+function cleanse(textData){
+    // todo: clean out URLs, \r\ns, markup etc
+    return textData.replace('\r\n', ' ').replace('\n', ' ');
 }
