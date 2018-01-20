@@ -28,3 +28,20 @@ function fits(text) {
         });
     return true;
 }
+
+function scrapHtml(html) {
+    const tagsToExtract = ['p', 'h1', 'h2', 'h3'];
+    var result = "";
+    const dom = new JSDOM(html);
+    tagsToExtract.forEach(function(tag){
+        const elements = 
+            dom.window.document.querySelectorAll(tag);
+        for (var key in elements) {
+            var text = elements[key].textContent;
+            if (text && fits(text)) {
+                result = result + '\r\n' + text;
+            }
+        }
+    });
+    return result;
+}
