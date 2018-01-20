@@ -54,8 +54,7 @@ function scrapHtml(html) {
 function cleanse(textData){
     // todo: clean out URLs, \r\ns, markup etc
     return textData
-        .replace('    ', ' ')
-        .replace('   ', ' ')
-        .replace('  ', ' ')
-        .replace(/(\r\n|\n|\r)/gm, '');
+        .replace(/'(\s{2,})'/gm, ' ')
+        .replace(/'(\t{1,})'/gm, ' ')
+        .replace(/(\r\n|\n|\r)+/gm, '');
 }
