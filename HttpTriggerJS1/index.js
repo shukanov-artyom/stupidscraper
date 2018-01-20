@@ -35,7 +35,7 @@ function fits(text) {
 }
 
 function scrapHtml(html) {
-    const tagsToExtract = ['p', 'h1', 'h2', 'h3'];
+    const tagsToExtract = ['p', 'h1', 'h2', 'h3', 'span', 'li'];
     var result = "";
     const dom = new JSDOM(html);
     tagsToExtract.forEach(function(tag){
@@ -54,6 +54,7 @@ function scrapHtml(html) {
 function cleanse(textData){
     // todo: clean out URLs, \r\ns, markup etc
     return textData
-        .replace(/\s+/gm, ' ')
-        .replace(/(\r\n|\n|\r)+/gm, ' ');
+        .replace(/\s+/gm, ' ') // replace multiple space characters with one space
+        .replace(/(\r\n|\n|\r)+/gm, ' ') // remove carriage retrun / newline
+        .replace(/(<\S+>\S*<\/\S+>)+/gm, ' '); // remove html tags included in text
 }
