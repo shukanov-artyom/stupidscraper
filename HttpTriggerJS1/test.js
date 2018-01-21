@@ -3,7 +3,8 @@ function cleanse(textData){
     return textData
         .replace(/\s+/gm, ' ') // replace multiple space characters with one space
         .replace(/(\r\n|\n|\r)+/gm, ' ') // remove carriage retrun / newline
-        .replace(/(<\S+>\S*<\/\S+>)+/gm, ' '); // remove html tags included in text
+        .replace(/(<\S+>\S*<\/\S+>)+/gm, ' ') // remove html tags included in text
+        .replace(/function\s\S+{.*}/, ' '); // remove javascript functions
 }
 
 function test() {
