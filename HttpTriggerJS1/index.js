@@ -57,5 +57,6 @@ function cleanse(textData){
         .replace(/\s+/gm, ' ') // replace multiple space characters with one space
         .replace(/(\r\n|\n|\r)+/gm, ' ') // remove carriage retrun / newline
         .replace(/(<\S+>\S*<\/\S+>)+/gm, ' ') // remove html tags included in text
-        .replace(/\S+\s*{.+}/gm, ''); // attempt to throw away all JSON (like styles)
+        .replace(/\S+\s*{.+}/gm, '') // attempt to throw away all JSON (like styles)
+        .replace(/\"/gm, ''); // remove all quotes
 }
